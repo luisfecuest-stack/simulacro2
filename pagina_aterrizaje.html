@@ -1,0 +1,149 @@
+<title>Era un Simulacro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Layout: una columna centrada, tarjeta de "revelación" arriba, tips abajo */
+  :root{
+    --bg:#eef2f7; --surface:#ffffff; --ink:#1b2430; --muted:#5a6b7e;
+    --line:#dce4ee; --accent:#1f6feb; --accent-soft:#e7f0ff;
+    --good:#1a7f5a; --good-soft:#e3f5ec; --warn:#b4530a; --warn-soft:#fdeede;
+    --shadow:0 10px 30px rgba(20,40,70,.10);
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --bg:#0e141c; --surface:#161f2b; --ink:#eaf0f7; --muted:#9fb0c3;
+    --line:#26323f; --accent:#4f96ff; --accent-soft:#17283f;
+    --good:#49c993; --good-soft:#123024; --warn:#f0a35a; --warn-soft:#3a2510;
+    --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0e141c; --surface:#161f2b; --ink:#eaf0f7; --muted:#9fb0c3;
+    --line:#26323f; --accent:#4f96ff; --accent-soft:#17283f;
+    --good:#49c993; --good-soft:#123024; --warn:#f0a35a; --warn-soft:#3a2510;
+    --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    margin:0; line-height:1.55;
+  }
+  .wrap{
+    max-width:720px; margin:0 auto;
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px));
+    padding-block:40px 56px;
+  }
+  h1,h2{font-family:"Space Grotesk","Inter",system-ui,sans-serif; text-wrap:balance; margin:0}
+  /* Tarjeta de revelación */
+  .reveal{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    box-shadow:var(--shadow); padding:34px 30px; text-align:center;
+  }
+  .badge{
+    width:84px; height:84px; margin:0 auto 20px; border-radius:50%;
+    background:var(--accent-soft); display:flex; align-items:center; justify-content:center;
+  }
+  .badge svg{width:46px; height:46px; stroke:var(--accent)}
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:700;
+    color:var(--accent); margin:0 0 10px;
+  }
+  .reveal h1{font-size:clamp(26px,5vw,38px); line-height:1.1; margin-bottom:14px}
+  .lead{font-size:17px; color:var(--muted); max-width:52ch; margin:0 auto}
+  .calm{
+    margin-top:22px; background:var(--good-soft); color:var(--good);
+    border-radius:12px; padding:14px 18px; font-size:14.5px; font-weight:600;
+    display:inline-block;
+  }
+  /* Secciones */
+  section{margin-top:40px}
+  .section-title{display:flex; align-items:center; gap:10px; margin-bottom:16px}
+  .section-title h2{font-size:21px}
+  .num{
+    flex:0 0 auto; width:30px; height:30px; border-radius:9px;
+    background:var(--accent); color:#fff; font-weight:700; font-size:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Space Grotesk",sans-serif;
+  }
+  .flags{list-style:none; padding:0; margin:0; display:grid; gap:12px}
+  .flags li{
+    background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn);
+    border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .flags .ico{color:var(--warn); flex:0 0 auto; font-size:18px; line-height:1.4}
+  .flags b{display:block; margin-bottom:2px}
+  .flags span{color:var(--muted); font-size:14px}
+  .tips{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px}
+  .tip{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px;
+  }
+  .tip .k{
+    display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px;
+    border-radius:10px; background:var(--accent-soft); color:var(--accent);
+    font-weight:700; margin-bottom:10px; font-family:"Space Grotesk",sans-serif;
+  }
+  .tip b{display:block; margin-bottom:4px}
+  .tip p{margin:0; color:var(--muted); font-size:14px}
+  .report{
+    margin-top:40px; background:var(--accent); color:#fff; border-radius:16px;
+    padding:26px 28px; text-align:center;
+  }
+  .report h2{color:#fff; font-size:20px; margin-bottom:8px}
+  .report p{margin:0 auto; max-width:48ch; opacity:.92; font-size:15px}
+  .report .mail{
+    margin-top:14px; display:inline-block; background:rgba(255,255,255,.16);
+    padding:9px 16px; border-radius:9px; font-weight:600; user-select:all;
+  }
+  footer{margin-top:40px; text-align:center; color:var(--muted); font-size:13px}
+  a.inline{color:var(--accent); font-weight:600; text-decoration:none}
+</style>
+
+<div class="wrap">
+
+  <div class="reveal">
+    <div class="badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    </div>
+    <p class="eyebrow">Ejercicio de seguridad · Navislogistics</p>
+    <h1>Tranquilo: esto era una prueba</h1>
+    <p class="lead">Acabas de hacer clic en un correo de <strong>phishing simulado</strong> enviado por tu propia organización. No ha pasado nada malo y no se guardó ninguna contraseña ni dato tuyo.</p>
+    <div class="calm">✓ Nadie será señalado. El objetivo es que todos aprendamos a reconocerlo.</div>
+  </div>
+
+  <section>
+    <div class="section-title"><span class="num">1</span><h2>Por qué ese correo era sospechoso</h2></div>
+    <ul class="flags">
+      <li><span class="ico">⚠️</span><div><b>Saludo genérico</b><span>Decía "Estimado usuario" en vez de tu nombre. Las áreas internas suelen dirigirse a ti por tu nombre.</span></div></li>
+      <li><span class="ico">⚠️</span><div><b>Urgencia y amenaza</b><span>"24 horas" o "serán eliminados". El miedo busca que actúes sin pensar.</span></div></li>
+      <li><span class="ico">⚠️</span><div><b>Enlace que no coincide</b><span>El botón llevaba a una dirección distinta al dominio real de la empresa. Pasa el mouse por encima antes de hacer clic.</span></div></li>
+      <li><span class="ico">⚠️</span><div><b>Pide "verificar la cuenta"</b><span>El área de sistemas nunca te pedirá tu contraseña ni que la ingreses desde un enlace de correo.</span></div></li>
+      <li><span class="ico">⚠️</span><div><b>Firma vaga</b><span>"Equipo de Soporte" sin un nombre ni un contacto verificable.</span></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-title"><span class="num">2</span><h2>Cómo protegerte la próxima vez</h2></div>
+    <div class="tips">
+      <div class="tip"><span class="k">1</span><b>Detente</b><p>Si un correo te apura o te asusta, es justo cuando debes ir más lento.</p></div>
+      <div class="tip"><span class="k">2</span><b>Verifica el remitente</b><p>Mira la dirección completa, no solo el nombre que se muestra.</p></div>
+      <div class="tip"><span class="k">3</span><b>Revisa el enlace</b><p>Posa el cursor sobre el botón y lee la dirección real antes de hacer clic.</p></div>
+      <div class="tip"><span class="k">4</span><b>Nunca des tu clave</b><p>Ninguna área legítima te pide la contraseña por correo.</p></div>
+      <div class="tip"><span class="k">5</span><b>Confirma por otro canal</b><p>¿Dudas? Llama o escribe a la persona por un medio que ya conoces.</p></div>
+      <div class="tip"><span class="k">6</span><b>Reporta</b><p>Avisar a tiempo protege a todo el equipo.</p></div>
+    </div>
+  </section>
+
+  <div class="report">
+    <h2>Si recibes un correo sospechoso, repórtalo</h2>
+    <p>No lo borres de inmediato: reenvíalo al área de sistemas para que pueda alertar a los demás.</p>
+    <div class="mail">soporte@navislogistics.com</div>
+  </div>
+
+  <footer>
+    Simulacro de concientización en ciberseguridad · Uso interno de Navislogistics.<br>
+    Gracias por ayudarnos a construir una organización más segura.
+  </footer>
+
+</div>
